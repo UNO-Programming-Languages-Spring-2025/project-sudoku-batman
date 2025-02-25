@@ -26,17 +26,22 @@ n(2).
 subgrid(I,J, 1 + (((I-1) / n) * n + ((J-1) / n))) :- row(I), column(J), n(N).
 
 % set 1 to be the most and least number to be assigned. that way each I,J would have only one number N
+
 1 {cell(I,J, N) : number(N) } 1 :- row(I), column(J).
 
+% line 30 and 34,35 accomplish the same thing but 34,35 were taken from queen exmaple from cclass.
+
+{ cell(I,J,N) : number(N) } :- row(I), column(J).
+
+:- row(I), column(J), #count { N : cell(I,J,N) } != 1.
 
 % TODO: make numbers unique in each row
 % TODO: make numbers unique in each column
 % TODO: make numbers unique in each subgrid
 
-
-
-
-
+% the following are column and row constraints from queen example.
+%:- queen(I,J), queen(I,J’), J != J’.
+%:- queen(I,J), queen(I',J), I != I'.
 
 
 
