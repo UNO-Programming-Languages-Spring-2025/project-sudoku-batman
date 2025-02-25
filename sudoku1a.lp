@@ -16,17 +16,17 @@
 % - there are a total of 4 rows and 4 columns for a 4x4 sudoku.
 number(1..4).
 column(1..4).
-rows(1..4).
+row(1..4).
 
 % defines the size of the subgrid
 % that way in a 4x4 grid, there are a total of 4 subgrids that are 2x2.
 n(2).
 
 % using formula 1+(((x-1)/n)*n+(y-1)/n) from hints for subgrid
-subgrid(I,J, 1 + (((I-1) / n) * n + ((J-1) / n))) :- row(I), col(J), n(N).
+subgrid(I,J, 1 + (((I-1) / n) * n + ((J-1) / n))) :- row(I), column(J), n(N).
 
 % set 1 to be the most and least number to be assigned. that way each I,J would have only one number N
-1 {cell(I,J, N) : number(N) } 1 :- rows(I), column(J).
+1 {cell(I,J, N) : number(N) } 1 :- row(I), column(J).
 
 
 % TODO: make numbers unique in each row
