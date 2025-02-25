@@ -9,6 +9,10 @@
 % Columns must be unique
 % Numbers available are 1...4
 % Subgrid blocks must be unique
+
+gridSize(4).
+rows(1..4).
+columns(1..4).
 solution(X,Y,N) :- initial(X,Y,N).
 numbers(1..4).
 sudoku(X,Y,N) :- solution(X,Y,N).
