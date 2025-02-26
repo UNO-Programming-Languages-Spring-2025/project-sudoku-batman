@@ -18,22 +18,32 @@ number(1..4).
 column(1..4).
 row(1..4).
 
-% defines the size of the subgrid
-% that way in a 4x4 grid, there are a total of 4 subgrids that are 2x2.
-n(2).
-
-% using formula 1+(((x-1)/n)*n+(y-1)/n) from hints for subgrid
-subgrid(I,J, 1 + (((I-1) / n) * n + ((J-1) / n))) :- row(I), column(J), n(N).
-
-% set 1 to be the most and least number to be assigned. that way each I,J would have only one number N
-
-1 {cell(I,J, N) : number(N) } 1 :- row(I), column(J).
-
-% line 30 and 34,35 accomplish the same thing but 34,35 were taken from queen exmaple from cclass.
-
+% allow a number N to be palced in any cell I,J
 { cell(I,J,N) : number(N) } :- row(I), column(J).
 
+% only one number per cell
 :- row(I), column(J), #count { N : cell(I,J,N) } != 1.
+
+%each row has all numbers from 1 to 4 only once.
+:- row(I), number(N), #count { J : cell(I,J,N) } != 1.
+%each column has all numbers from 1 to 4 only once.
+:- column(J), number(N), #count { I : cell(I,J,N) } != 1.
+
+
+
+
+% defines the size of the subgrid
+% that way in a 4x4 grid, there are a total of 4 subgrids that are 2x2.
+% n(2).
+
+% using formula 1+(((x-1)/n)*n+(y-1)/n) from hints for subgrid
+% subgrid(I,J, 1 + (((I-1) / n) * n + ((J-1) / n))) :- row(I), column(J), n(N).
+
+% set 1 to be the most and least number to be assigned. that way each I,J would have only one number N
+% line 30 and 34,35 accomplish the same thing but 34,35 were taken from queen exmaple from cclass.
+
+
+
 
 % TODO: make numbers unique in each row
 % TODO: make numbers unique in each column
