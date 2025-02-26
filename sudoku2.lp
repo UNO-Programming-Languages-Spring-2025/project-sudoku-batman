@@ -10,13 +10,16 @@
 % Numbers available are 1...4
 % Subgrid blocks must be unique
 
-numbers(1..4).
-gridSize(4).
-rows(1..4).
-columns(1..4).
-n(2).
+numbers(1..9).
+gridSize(9).
+rows(1..9).
+columns(1..9).
+n(3).
 %Subgrid creation
 subgrid(X,Y,G) :- rows(X), columns(Y), n(N), G = 1 + (((X-1) / N) * N + ((Y-1) / N)).
+
+
+
 % Numbers appear once KEEPING in mind the initial state
 1 { sudoku(X,Y,N) : numbers(N)} 1 :- rows(X), columns(Y), not initial(X,Y,_).
 sudoku(X, Y, N) :- initial(X, Y, N).
